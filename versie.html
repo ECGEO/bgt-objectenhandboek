@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Versies &amp; wijzigingen &ndash; BGT Objectenhandboek (ECGeo)
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="ecgeo.ico" />
+
+    <style>
+      :root {
+        --bg: #f5f7fa;
+        --bg-alt: #ffffff;
+        --accent: #0066aa;
+        --accent-soft: #e5f2fb;
+        --text: #023672;
+        --text-muted: #666666;
+        --border: #d0d6e0;
+        --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
+        --radius: 8px;
+        --radius-large: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      header {
+        background: var(--bg-alt);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .site-title {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .logo {
+        height: 48px;
+        margin-right: 0.5rem;
+        display: block;
+      }
+
+      .site-title h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .site-title span {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        display: block;
+        margin-top: -4px;
+      }
+
+      .layout {
+        max-width: 1200px;
+        margin: 1.5rem auto;
+        padding: 0 1.5rem 2rem;
+        display: grid;
+        grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+        gap: 1.5rem;
+      }
+
+      aside {
+        align-self: flex-start;
+        position: sticky;
+        top: 5.5rem;
+      }
+
+      .side-card {
+        background: var(--bg-alt);
+        border-radius: var(--radius-large);
+        padding: 1rem 1.1rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 1rem;
+      }
+
+      .side-card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+      }
+
+      .side-card p {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .side-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+      }
+
+      .side-nav li {
+        margin-bottom: 0.2rem;
+      }
+
+      .side-nav a {
+        display: block;
+        padding: 0.3rem 0.4rem;
+        border-radius: var(--radius);
+      }
+
+      .side-nav a:hover,
+      .side-nav a[aria-current="page"] {
+        background: var(--accent-soft);
+        text-decoration: none;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--bg-alt);
+        border-radius: var(--radius-large);
+        padding: 1.25rem 1.4rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+      }
+
+      .card h3 {
+        margin: 1rem 0 0.35rem;
+        font-size: 1rem;
+      }
+
+      .intro {
+        font-size: 0.98rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin: 0.2rem 0 0;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 0.9rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 0.55rem 0.5rem;
+        border-bottom: 1px solid #e0e4ec;
+        vertical-align: top;
+      }
+
+      th {
+        text-align: left;
+        font-weight: 600;
+        background: #f6f7fb;
+      }
+
+      td:first-child {
+        white-space: nowrap;
+        font-weight: 600;
+      }
+
+      .empty-row td {
+        color: var(--text-muted);
+        font-style: italic;
+        font-weight: 400;
+        white-space: normal;
+      }
+
+      .notice {
+        border-left: 4px solid var(--accent);
+      }
+
+      .notice-list {
+        margin: 0.8rem 0 0;
+        padding-left: 1.2rem;
+      }
+
+      .notice-list li {
+        margin-bottom: 0.75rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      .notice-list strong {
+        color: var(--text);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 0.8rem 1.5rem 1.2rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-align: center;
+      }
+
+      .highlight-reading {
+        background: #fff3a3;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 880px) {
+        .layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        aside {
+          position: static;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+	  
+	  	.header-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.back-home-btn {
+		display: inline-block;
+		padding: 0.45rem 0.85rem;
+		border-radius: 999px;
+		background: var(--accent-soft);
+		color: var(--accent);
+		font-size: 0.85rem;
+		font-weight: 500;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.back-home-btn:hover {
+		background: var(--accent);
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	  
+    </style>
+  </head>
+
+  <body>
+<header>
+  <div class="header-inner">
+    <div class="site-title">
+      <a href="index.html">
+        <img src="ECGeo.jpg" alt="ECGeo logo" class="logo" />
+      </a>
+      <div>
+        <h1>BGT Objectenhandboek</h1>
+        <span>ECGeo – richtlijnen voor inwinning en beheer</span>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-home-btn">
+      Terug naar startpagina
+    </a>
+  </div>
+</header>
+
+    <div class="layout">
+      <aside>
+        <div class="side-card">
+          <h2>Versies &amp; wijzigingen</h2>
+          <p>Overzicht van versies, wijzigingsdata en toelichtingen.</p>
+        </div>
+
+        <div class="side-card">
+          <h2>Navigatie</h2>
+          <ul class="side-nav">
+            <li><a href="handboek.html">Over dit handboek</a></li>
+            <li><a href="leeswijzer.html">Leeswijzer &amp; definities</a></li>
+            <li><a href="kwaliteit.html">Kwaliteit</a></li>
+            <li><a href="rc.html">Ruimtelijke Component (RC)</a></li>
+            <li><a href="fg.html">Functionele Gebieden (FG)</a></li>
+            <li><a href="pakketten.html">BGT-pakketten</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <main>
+        <div style="display: flex; gap: 0.4rem">
+          <button id="playBtn">Voorlezen</button>
+          <button id="stopBtn">Stop</button>
+        </div>
+
+        <section class="card" id="versieoverzicht">
+          <h2>Versies &amp; wijzigingen</h2>
+          <p class="intro">
+            Op deze pagina wordt bijgehouden welke versies van het
+            objectenhandboek zijn gepubliceerd, wanneer deze zijn gewijzigd en
+            welke aanpassingen zijn doorgevoerd.
+          </p>
+
+          <div class="table-wrap">
+            <table aria-label="Versieoverzicht">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Wijziging</th>
+                  <th>Korte toelichting</th>
+                  <th>Versie</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="empty-row">
+                  <td colspan="4"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card notice" id="disclaimer">
+          <h2>Disclaimer</h2>
+          <p class="intro">
+            ECGeo doet haar uiterste best om het objectenhandboek actueel en
+            correct te houden. Wijzigingen in landelijke standaarden, lokale
+            afspraken of werkwijzen worden zo zorgvuldig mogelijk verwerkt en
+            gecommuniceerd. Aan dit handboek kunnen geen rechten worden
+            ontleend.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      &copy; <span id="year"></span> ECGeo &ndash; BGT Objectenhandboek
+    </footer>
+    <script src="site.js"></script>
+</body>
+</html>
