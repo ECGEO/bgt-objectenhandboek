@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>BGT Objectenhandboek &ndash; ECGeo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/x-icon" href="ecgeo.ico" />
+
+    <style>
+      :root {
+        --bg: #f5f7fa;
+        --bg-alt: #ffffff;
+        --accent: #0066aa;
+        --accent-soft: #e5f2fb;
+        --text: #003870;
+        --text-muted: #666666;
+        --border: #d0d6e0;
+        --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
+        --radius: 8px;
+        --radius-large: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Logo in header */
+      .logo {
+        height: 48px;
+        margin-right: 0.6rem;
+        display: block;
+      }
+
+      header {
+        background: var(--bg-alt);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .site-title {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .site-title h1 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .site-title span {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        display: block;
+        margin-top: -4px;
+      }
+
+      nav.main-nav {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.95rem;
+      }
+
+      nav.main-nav a {
+        padding: 0.4rem 0.6rem;
+        border-radius: 999px;
+      }
+
+      nav.main-nav a:hover {
+        background: var(--accent-soft);
+        text-decoration: none;
+      }
+
+      .layout {
+        max-width: 1200px;
+        margin: 1.5rem auto;
+        padding: 0 1.5rem 2rem;
+        display: grid;
+        grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+        gap: 1.5rem;
+      }
+
+      aside {
+        align-self: flex-start;
+        position: sticky;
+        top: 5.5rem;
+      }
+
+      .side-card {
+        background: var(--bg-alt);
+        border-radius: var(--radius-large);
+        padding: 1rem 1.1rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 1rem;
+      }
+
+      .side-card h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+      }
+
+      .side-card p {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .side-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+      }
+
+      .side-nav li {
+        margin-bottom: 0.2rem;
+      }
+
+      .side-nav a {
+        display: block;
+        padding: 0.3rem 0.4rem;
+        border-radius: var(--radius);
+      }
+
+      .side-nav a:hover {
+        background: var(--accent-soft);
+        text-decoration: none;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--bg-alt);
+        border-radius: var(--radius-large);
+        padding: 1.25rem 1.4rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+      }
+
+      .intro {
+        font-size: 0.98rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* Zoekbalk */
+      .search-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .search-input {
+        flex: 1 1 220px;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.7rem;
+        background: #f1f4f8;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+
+      .search-input input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 0.95rem;
+      }
+
+      .search-input span {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      /* Zoekresultaten */
+      .search-results {
+        margin-top: 1rem;
+        font-size: 0.95rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .search-results h3 {
+        margin: 0 0 0.2rem;
+        font-size: 1rem;
+      }
+
+      /* Volledig klikbare pill */
+      .search-result-item {
+        display: block;
+        border-radius: 999px;
+        background: #eef1f7;
+        border: 1px solid var(--border);
+        transition:
+          background-color 0.2s,
+          border-color 0.2s;
+        overflow: hidden;
+      }
+
+      .search-result-item:hover {
+        background: var(--accent-soft);
+        border-color: transparent;
+      }
+
+      .search-result-item a {
+        display: block;
+        width: 100%;
+        padding: 0.4rem 0.9rem;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .search-result-item a:hover {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .search-result-item small {
+        display: none;
+      }
+
+      .search-result-item.is-disabled {
+        opacity: 0.8;
+      }
+
+      .search-result-item.is-disabled:hover {
+        opacity: 1;
+        background: var(--accent-soft);
+        border-color: transparent;
+      }
+
+      .search-result-item .disabled-label {
+        display: block;
+        padding: 0.4rem 0.9rem;
+        color: var(--text);
+        cursor: default;
+      }
+
+      /* BGT-hoofdcategorieën */
+      .bgt-categories {
+        margin-top: 1.2rem;
+      }
+
+      .bgt-categories p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin: 0.2rem 0 0.6rem;
+      }
+
+      /* Masonry (optie A) */
+      .category-grid.masonry {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 0.6rem;
+        align-items: start;
+      }
+
+      .masonry-col {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 0;
+      }
+
+      .category-card {
+        background: #ffffff;
+        border-radius: var(--radius-large);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+        padding: 0.9rem 1rem;
+      }
+
+      .category-card h3 {
+        margin: 0 0 0.2rem;
+        font-size: 1.2rem;
+      }
+
+      .category-card span {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 0.4rem;
+      }
+
+      .category-group h4 {
+        margin: 1rem 0 1rem;
+        font-size: 0.92rem;
+        color: var(--text);
+      }
+
+      .category-sublist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+
+      .category-sublist li {
+        margin: 0;
+      }
+
+      .category-sublist a {
+        display: inline-block;
+        padding: 0.18rem 0.6rem;
+        border-radius: 999px;
+        background: #eef1f7;
+        font-size: 0.82rem;
+        color: var(--text);
+      }
+
+      .category-sublist a:hover {
+        background: var(--accent-soft);
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 0.8rem 1.5rem 1.2rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-align: center;
+      }
+
+      /* Responsief */
+      @media (max-width: 1100px) {
+        .category-grid.masonry {
+          grid-template-columns: repeat(2, minmax(220px, 1fr));
+        }
+        .category-grid.masonry .masonry-col:nth-child(3) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 880px) {
+        .layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        aside {
+          position: static;
+        }
+      }
+
+      /* 🔊 highlight */
+      .highlight-reading {
+        background: #fff3a3;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 640px) {
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        nav.main-nav {
+          flex-wrap: wrap;
+        }
+
+        .category-grid.masonry {
+          grid-template-columns: 1fr;
+        }
+        .category-grid.masonry .masonry-col:nth-child(2),
+        .category-grid.masonry .masonry-col:nth-child(3) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-inner">
+        <div class="site-title">
+          <img src="ECGeo.jpg" alt="ECGeo logo" class="logo" />
+          <div>
+            <h1>BGT Objectenhandboek</h1>
+            <span>ECGeo &ndash; richtlijnen voor inwinning en beheer</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside>
+        <div class="side-card" id="home">
+          <h2>Navigatie</h2>
+          <p>
+            Dit objectenhandboek beschrijft hoe ECGeo BGT-objecten inwint,
+            beheert en afbakent.
+          </p>
+          <ul class="side-nav">
+            <li><a href="handboek.html">Over dit handboek</a></li>
+            <li><a href="leeswijzer.html">Leeswijzer & definities</a></li>
+            <li><a href="kwaliteit.html">Kwaliteit</a></li>
+            <li><a href="rc.html">Ruimtelijke Component (RC)</a></li>
+            <li><a href="fg.html">Functionele Gebieden (FG)</a></li>
+            <li><a href="pakketten.html">BGT-pakketten</a></li>
+            <li><a href="versie.html">Versies &amp; wijzigingen</a></li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h2>Contact &amp; feedback</h2>
+          <p>Vragen of verbetervoorstellen?</p>
+          <p>
+            Dien een melding in via
+            <a
+              href="https://eva.ictnml.nl/tas/public"
+              target="_blank"
+              rel="noopener"
+              >TOPdesk</a
+            >.
+          </p>
+        </div>
+      </aside>
+
+      <main>
+        <!-- 🔊 VOORLEESKNOPPEN -->
+        <div style="display: flex; gap: 0.4rem">
+          <button id="playBtn">▶ Voorlezen</button>
+          <button id="stopBtn">■ Stop</button>
+        </div>
+
+        <!-- Zoek & overzicht -->
+        <section class="card" aria-labelledby="zoek-title">
+          <h2 id="zoek-title">Zoek in het handboek</h2>
+          <p class="intro">
+            Gebruik de zoekbalk om te zoeken in BGT-objecten en in
+            detailpagina&rsquo;s van het objectenhandboek.
+          </p>
+          <div class="search-bar">
+            <div class="search-input">
+              <span>🔍</span>
+              <input
+                id="searchBox"
+                type="search"
+                placeholder="Zoek op objectnaam, code of begrip&hellip;"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Zoekresultaten voor andere HTML-pagina's -->
+          <div id="searchResults" class="search-results"></div>
+        </section>
+
+        <!-- BGT-objecten -->
+        <section class="card bgt-categories" id="objecten">
+          <h2>Hoofdcategorie&euml;n BGT</h2>
+          <p>
+            Dit overzicht toont per objectgroep uit de BGT-pakketten de
+            objecten, functies en IMGEO functies.
+          </p>
+
+          <!-- Masonry wrapper: 3 kolommen + kaarten (kaarten worden door JS verdeeld) -->
+          <div class="category-grid masonry" id="masonryGrid">
+            <div class="masonry-col"></div>
+            <div class="masonry-col"></div>
+            <div class="masonry-col"></div>
+
+            <!-- Wegdeel -->
+            <div class="category-card">
+              <h3>Wegdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="ov-baan.html">OV-baan</a></li>
+                  <li><a href="overweg.html">Overweg</a></li>
+				  <li><a href="spoorbaan.html">Spoorbaan</a></li>
+                    <li><a href="rijbaan_autosnelweg.html">Rijbaan autosnelweg</a>
+                  </li>
+                  <li><a href="rijbaan_autoweg.html">Rijbaan autoweg</a></li>
+                  <li>
+                    <a href="rijbaan_regionale_weg.html"
+                      >Rijbaan regionale weg</a
+                    >
+                  </li>
+                  <li>
+                    <a href="rijbaan_lokale_weg.html">Rijbaan lokale weg</a>
+                  </li>
+                  <li><a href="fietspad.html">Fietspad</a></li>
+                  <li><a href="voetpad.html">Voetpad</a></li>
+                  <li><a href="voetpad_op_trap.html">Voetpad op trap</a></li>
+                  <li><a href="ruiterpad.html">Ruiterpad</a></li>
+                  <li><a href="parkeervlak.html">Parkeervlak</a></li>
+                  <li>
+                    <a href="voetgangersgebied.html">Voetgangersgebied</a>
+                  </li>
+                  <li><a href="inrit.html">Inrit</a></li>
+                  <li><a href="woonerf.html">Woonerf</a></li>
+                  <li><a href="verbindingsweg.html">Verbindingsweg</a></li>
+                  <li><a href="calamiteitendoorsteek.html">Calamiteitendoorsteek</a></li>
+                  <li><a href="verkeersdrempel.html">Verkeersdrempel</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Ondersteunend wegdeel -->
+            <div class="category-card">
+              <h3>Ondersteunend wegdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="#">Ondersteunend wegdeel</a></li>
+                  <li><a href="verkeerseiland.html">Verkeerseiland</a></li>
+                  <li><a href="berm.html">Berm</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Onbegroeid terreindeel -->
+            <div class="category-card">
+              <h3>Onbegroeid terreindeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="onbegroeid_terreindeel.html">Onbegroeid terreindeel</a></li>
+                  <li><a href="erf.html">Erf</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Begroeid terreindeel -->
+            <div class="category-card">
+              <h3>Begroeid terreindeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li>
+                    <a href="begroeid_terreindeel.html"
+                      >Begroeid terreindeel</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Waterdeel -->
+            <div class="category-card">
+              <h3>Waterdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="greppel.html">Greppel/droge sloot</a></li>
+                  <li><a href="waterloop.html">Waterloop</a></li>
+                  <li><a href="watervlakte.html">Watervlakte</a></li>
+                  <li><a href="beek.html">Beek</a></li>
+                  <li><a href="gracht.html">Gracht</a></li>
+                  <li><a href="rivier.html">Rivier</a></li>
+                  <li><a href="waterloop.html">Sloot</a></li>
+                  <li><a href="kanaal.html">Kanaal</a></li>
+                  <li><a href="bron.html">Bron</a></li>
+                  <li><a href="haven.html">Haven</a></li>
+                  <li>
+                    <a href="watervlakte.html">Meer, plas, ven, vijver</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Ondersteunend waterdeel -->
+            <div class="category-card">
+              <h3>Ondersteunend waterdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="oever_slootkant.html">Oever, slootkant</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Pand -->
+            <div class="category-card">
+              <h3>Pand</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="pand.html">Pand</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Overig bouwwerk -->
+            <div class="category-card">
+              <h3>Overig bouwwerk</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="overkapping.html">Overkapping</a></li>
+                  <li><a href="open_loods.html">Open loods</a></li>
+                  <li><a href="opslagtank.html">Opslagtank</a></li>
+                  <li><a href="bezinkbak.html">Bezinkbak</a></li>
+                  <li><a href="windturbine.html">Windturbine</a></li>
+                  <li><a href="lage_trafo.html">Lage trafo</a></li>
+                  <li><a href="bassin.html">Bassin</a></li>
+                  <li><a href="bunker.html">Bunker</a></li>
+                  <li><a href="voedersilo.html">Voedersilo</a></li>
+                  <li><a href="schuur.html">Schuur</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Scheiding -->
+            <div class="category-card">
+              <h3>Scheiding</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="muur.html">Muur</a></li>
+                  <li><a href="kademuur.html">Kademuur</a></li>
+                  <li><a href="damwand.html">Damwand</a></li>
+                  <li><a href="geluidsscherm.html">Geluidsscherm</a></li>
+                  <li><a href="walbescherming.html">Walbescherming</a></li>
+                  <li><a href="hek.html">Hek</a></li>
+                  <li><a href="draadraster.html">Draadraster</a></li>
+                  <li><a href="faunaraster.html">Faunaraster</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Overbruggingsdeel -->
+            <div class="category-card">
+              <h3>Overbruggingsdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="brug.html">Brug</a></li>
+                  <li><a href="aquaduct.html">Aquaduct</a></li>
+                  <li><a href="viaduct.html">Viaduct</a></li>
+                  <li><a href="ecoduct.html">Ecoduct</a></li>
+                  <li><a href="landhoofd.html">Landhoofd</a></li>
+                  <li><a href="pijler.html">Pijler</a></li>
+                  <li><a href="sloof.html">Sloof</a></li>
+                  <li><a href="pyloon.html">Pyloon</a></li>
+                  <li><a href="dek.html">Dek</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tunneldeel -->
+            <div class="category-card">
+              <h3>Tunneldeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="tunneldeel.html">Tunneldeel</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Kunstwerkdeel -->
+            <div class="category-card">
+              <h3>Kunstwerkdeel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="hoogspanningsmast.html">Hoogspanningsmast</a></li>
+                  <li><a href="gemaal.html">Gemaal</a></li>
+                  <li><a href="perron.html">Perron</a></li>
+                  <li><a href="sluis.html">Sluis</a></li>
+                  <li><a href="strekdam.html">Strekdam</a></li>
+                  <li><a href="steiger.html">Steiger</a></li>
+                  <li><a href="stuw.html">Stuw</a></li>
+                  <li><a href="keermuur.html">Keermuur</a></li>
+                  <li><a href="overkluizing.html">Overkluizing</a></li>
+                  <li><a href="duiker.html">Duiker</a></li>
+                  <li><a href="faunavoorziening.html">Faunavoorziening</a></li>
+                  <li><a href="vispassage.html">Vispassage</a></li>
+                  <li><a href="bodemval.html">Bodemval</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Functioneel gebied -->
+            <div class="category-card">
+              <h3>Functioneel gebied</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="functioneel_gebied_kering.html">Kering</a></li>
+                  <li><a href="functioneel_gebied_bedrijvigheid.html">Bedrijvigheid</a></li>
+                  <li><a href="functioneel_gebied_natuur_en_landschap.html">Natuur en landschap</a></li>
+                  <li><a href="functioneel_gebied_landbouw.html">Landbouw</a></li>
+                  <li><a href="functioneel_gebied_bewoning.html">Bewoning</a></li>
+                  <li><a href="functioneel_gebied_infrastructuur_verkeer_en_vervoer.html">Infrastructuur verkeer en vervoer</a></li>
+                  <li><a href="functioneel_gebied_infrastructuur_waterstaatswerken.html">Infrastructuur waterstaatswerken</a></li>
+                  <li><a href="functioneel_gebied_waterbergingsgebied.html">Waterbergingsgebied</a></li>
+                  <li>
+                    <a href="functioneel_gebied_maatschappelijke_publieksvoorziening.html">Maatschappelijke en/of publieksvoorziening</a>
+                  </li>
+                  <li><a href="functioneel_gebied_recreatie.html">Recreatie</a></li>
+                  <li><a href="functioneel_gebied_begraafplaats.html">Begraafplaats</a></li>
+                  <li><a href="functioneel_gebied_functioneel_beheer.html">Functioneel beheer</a></li>
+                  <li><a href="functioneel_gebied_recreatie_speeltuin.html">Recreatie: speeltuin</a></li>
+                  <li><a href="functioneel_gebied_recreatie_park.html">Recreatie: park</a></li>
+                  <li><a href="functioneel_gebied_recreatie_sportterrein.html">Recreatie: sportterrein</a></li>
+                  <li><a href="functioneel_gebied_recreatie_camping.html">Recreatie: camping</a></li>
+                  <li><a href="functioneel_gebied_recreatie_bungalowpark.html">Recreatie: bungalowpark</a></li>
+                  <li><a href="functioneel_gebied_bushalte.html">Bushalte</a></li>
+                  <li><a href="functioneel_gebied_carpoolplaats.html">Carpoolplaats</a></li>
+                  <li><a href="functioneel_gebied_benzinestation.html">Benzinestation</a></li>
+                  <li><a href="functioneel_gebied_verzorgingsplaats.html">Verzorgingsplaats</a></li>
+                  <li>
+                    <a href="functioneel_gebied_functioneel_beheer_hondenuitlaatplaats.html">Functioneel beheer: hondenuitlaatplaats</a>
+                  </li>
+                  <li><a href="functioneel_gebied_recreatie_volkstuin.html">Recreatie: volkstuin</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Openbare ruimtelabel -->
+            <div class="category-card">
+              <h3>Openbare ruimtelabel</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="openbare_ruimtelabel.html">Openbare ruimtelabel</a></li>
+                  <li><a href="huisnummerlabel.html">Huisnummerlabel</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Bak -->
+            <div class="category-card">
+              <h3>Bak</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="afval_apart_plaats.html">Afval apart plaats</a></li>
+                  <li><a href="afvalbak.html">Afvalbak</a></li>
+                  <li><a href="bloembak.html">Bloembak</a></li>
+                  <li><a href="container.html">Container</a></li>
+                  <li><a href="drinkbak.html">Drinkbak</a></li>
+                  <li><a href="zand_zoutbak.html">Zand- / zoutbak</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Bord -->
+            <div class="category-card">
+              <h3>Bord</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="informatiebord.html">Informatiebord</a></li>
+                  <li><a href="plaatsnaambord.html">Plaatsnaambord</a></li>
+                  <li><a href="straatnaambord.html">Straatnaambord</a></li>
+                  <li><a href="scheepvaartbord.html">Scheepvaartbord</a></li>
+                  <li><a href="verklikker_transportleiding.html">Verklikker transportleiding</a></li>
+                  <li><a href="reclamebord.html">Reclamebord</a></li>
+                  <li><a href="wegwijzer.html">Wegwijzer</a></li>
+                  <li><a href="waarschuwingshek.html">Waarschuwingshek</a></li>
+                  <li><a href="dynamische_snelheidsindicator.html">Dynamische snelheidsindicator</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Gebouw-installatie -->
+            <div class="category-card">
+              <h3>Gebouw-installatie</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="bordes.html">Bordes</a></li>
+                  <li><a href="toegangstrap.html">Toegangstrap</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Inrichtingselement -->
+            <div class="category-card">
+              <h3>Inrichtingselement</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="#">Inrichtingselement</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Installatie -->
+            <div class="category-card">
+              <h3>Installatie</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="#">Installatie</a></li>
+                  <li><a href="pomp.html">Pomp</a></li>
+                  <li><a href="zonnepaneel.html">Zonnepaneel</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Kast -->
+            <div class="category-card">
+              <h3>Kast</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="rioolkast.html">Rioolkast</a></li>
+                  <li><a href="cai_kast.html">CAI-kast</a></li>
+                  <li><a href="elektrakast.html">Elektrakast</a></li>
+                  <li><a href="gaskast.html">Gaskast</a></li>
+                  <li><a href="telecomkast.html">Telecomkast</a></li>
+                  <li><a href="openbare_verlichtingkast.html">Openbare verlichtingkast</a></li>
+                  <li><a href="verkeersregelinstallatiekast.html">Verkeersregelinstallatiekast</a></li>
+                  <li><a href="telkast.html">Telkast</a></li>
+                  <li><a href="gms_kast.html">GMS-kast</a></li>
+                  <li><a href="pollerbedieningskast.html">Pollerbedieningskast</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Mast -->
+            <div class="category-card">
+              <h3>Mast</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="#">Bovenleidingmast</a></li>
+                  <li><a href="laagspanningsmast.html">Laagspanningsmast</a></li>
+                  <li><a href="straalzender.html">Straalzender</a></li>
+                  <li><a href="zendmast.html">Zendmast</a></li>
+                  <li><a href="radarmast.html">Radarmast</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Paal -->
+            <div class="category-card">
+              <h3>Paal</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="lichtmast.html">Lichtmast</a></li>
+                  <li><a href="telpaal.html">Telpaal</a></li>
+                  <li><a href="portaal.html">Portaal</a></li>
+                  <li><a href="verkeersregelinstallatiepaal.html">Verkeersregelinstallatiepaal</a></li>
+                  <li><a href="verkeersbordpaal.html">Verkeersbordpaal</a></li>
+                  <li><a href="poller.html">Poller</a></li>
+                  <li><a href="haltepaal.html">Haltepaal</a></li>
+                  <li><a href="vlaggenmast.html">Vlaggenmast</a></li>
+                  <li><a href="afsluitpaal.html">Afsluitpaal</a></li>
+                  <li><a href="praatpaal.html">Praatpaal</a></li>
+                  <li><a href="hectometerpaal.html">Hectometerpaal</a></li>
+                  <li><a href="dijkpaal.html">Dijkpaal</a></li>
+                  <li><a href="drukknoppaal.html">Drukknoppaal</a></li>
+                  <li><a href="grensmarkering.html">Grensmarkering</a></li>
+                  <li><a href="sirene.html">Sirene</a></li>
+                  <li><a href="peilbuis.html">Peilbuis</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Put -->
+            <div class="category-card">
+              <h3>Put</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="inspectie_rioolput.html">Inspectie- / rioolput</a></li>
+                  <li><a href="kolk.html">Kolk</a></li>
+                  <li><a href="benzine_olieput.html">Benzine- / olieput</a></li>
+                  <li><a href="brandkraan_put.html">Brandkraan / -put</a></li>
+                  <li><a href="drainageput.html">Drainageput</a></li>
+                  <li><a href="gasput.html">Gasput</a></li>
+                  <li><a href="waterleidingput.html">Waterleidingput</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Sensor -->
+            <div class="category-card">
+              <h3>Sensor</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="#">Sensor</a></li>
+                  <li><a href="camera.html">Camera</a></li>
+                  <li><a href="debietmeter.html">Debietmeter</a></li>
+                  <li><a href="gms_sensor.html">GMS-sensor</a></li>
+                  <li><a href="radardetector.html">Radardetector</a></li>
+                  <li><a href="weerstation.html">Weerstation</a></li>
+                  <li><a href="detectielus.html">Detectielus</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Straatmeubilair -->
+            <div class="category-card">
+              <h3>Straatmeubilair</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="kunstobject.html">Kunstobject</a></li>
+                  <li><a href="speelvoorziening.html">Speelvoorziening</a></li>
+                  <li><a href="bank.html">Bank</a></li>
+                  <li><a href="picknicktafel.html">Picknicktafel</a></li>
+                  <li><a href="abri.html">Abri</a></li>
+                  <li><a href="bolder.html">Bolder</a></li>
+                  <li><a href="brievenbus.html">Brievenbus</a></li>
+                  <li><a href="fietsenrek.html">Fietsenrek</a></li>
+                  <li><a href="openbaar_toilet.html">Openbaar toilet</a></li>
+                  <li><a href="slagboom.html">Slagboom</a></li>
+                  <li><a href="telefooncel.html">Telefooncel</a></li>
+                  <li><a href="fontein.html">Fontein</a></li>
+                  <li><a href="lichtpunt.html">Lichtpunt</a></li>
+                  <li><a href="parkeerbeugel.html">Parkeerbeugel</a></li>
+                  <li><a href="betaalautomaat.html">Betaalautomaat</a></li>
+                  <li><a href="reclamezuil.html">Reclamezuil</a></li>
+                  <li><a href="fietsenkluis.html">Fietsenkluis</a></li>
+                  <li><a href="herdenkingsmonument.html">Herdenkingsmonument</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Vegetatie-object -->
+            <div class="category-card">
+              <h3>Vegetatie-object</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="boom.html">Boom</a></li>
+                  <li><a href="haag.html">Haag</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Waterinrichtingselement -->
+            <div class="category-card">
+              <h3>Waterinrichtingselement</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="remmingswerk.html">Remmingswerk</a></li>
+                  <li><a href="betonning.html">Betonning</a></li>
+                  <li><a href="geleidewerk.html">Geleidewerk</a></li>
+                  <li><a href="vuilvang.html">Vuilvang</a></li>
+                  <li><a href="meerpaal.html">Meerpaal</a></li>
+                  <li><a href="hoogtemerk.html">Hoogtemerk</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Weginrichtingselement -->
+            <div class="category-card">
+              <h3>Weginrichtingselement</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="wildrooster.html">Wildrooster</a></li>
+                  <li><a href="molgoot.html">Molgoot</a></li>
+                  <li><a href="lijnafwatering.html">Lijnafwatering</a></li>
+                  <li><a href="#">Wegmarkering</a></li>
+                  <li><a href="rooster.html">Rooster</a></li>
+                  <li><a href="geleideconstructie.html">Geleideconstructie</a></li>
+                  <li><a href="balustrade.html">Balustrade</a></li>
+                  <li><a href="boomspiegel.html">Boomspiegel</a></li>
+                  <li><a href="verblindingswering.html">Verblindingswering</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Registratief gebied -->
+            <div class="category-card">
+              <h3>Registratief gebied</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="wijk.html">Wijk</a></li>
+                  <li><a href="stadsdeel.html">Stadsdeel</a></li>
+                  <li><a href="waterschap.html">Waterschap</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Buurt -->
+            <div class="category-card">
+              <h3>Buurt</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="buurt.html">Buurt</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Openbare ruimte -->
+            <div class="category-card">
+              <h3>Openbare ruimte</h3>
+
+              <div class="category-group">
+                <ul class="category-sublist">
+                  <li><a href="openbare_ruimte.html">Openbare ruimte</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      &copy; <span id="year"></span> ECGeo &ndash; BGT Objectenhandboek
+    </footer>
+
+    <script>
+
+      const searchBox = document.getElementById("searchBox");
+      const resultsContainer = document.getElementById("searchResults");
+
+      // Alle link-items onder "Hoofdcategorieën BGT" (chips)
+      const linkItems = Array.from(
+        document.querySelectorAll(".category-sublist li"),
+      );
+
+      // Handmatige index (optioneel): synoniemen/aliases/extra keywords.
+      // Je hoeft niet meer alle objecten hier te onderhouden: de auto-index pakt alle links op deze startpagina.
+      const pageIndex = [
+        {
+          title: "Wegdeel functie: Fietspad",
+          url: "fietspad.html",
+          keywords:
+            "wegdeel fietspad transport gesloten verharding open verharding asfalt cementbeton betonklinkers bgt imgeo",
+        },
+        {
+          title: "Wegdeel functie: OV-baan",
+          url: "ov-baan.html",
+          keywords:
+            "wegdeel ov-baan ov baan busbaan openbaar vervoer bgt imgeo",
+        },
+        {
+          title: "Wegdeel functie: Overweg",
+          url: "overweg.html",
+          keywords:
+            "wegdeel overweg spoorwegovergang gelijkvloerse kruising trein sneltram bgt imgeo",
+        },
+        {
+          title: "Wegdeel functie: Inrit",
+          url: "inrit.html",
+          keywords: "wegdeel inrit uitrit oprit toegang bgt imgeo",
+        },
+        {
+          title: "Greppel/droge sloot",
+          url: "greppel.html",
+          keywords:
+            "waterdeel greppel droge sloot greppel/droge sloot waterhuishouding bgt imgeo",
+        },
+      ];
+
+      // Normalisatie zonder backslashes (kan veilig in deze editor)
+      function norm(s) {
+        const lowered = (s || "").toLowerCase();
+        const cleaned = lowered.replace(/[^a-z0-9 -]+/gi, " ");
+        return cleaned.split(" ").filter(Boolean).join(" ").trim();
+      }
+
+      // Auto-index: pakt ALLE object-links op deze startpagina (ook href="#")
+      function buildAutoIndex() {
+        const anchors = Array.from(
+          document.querySelectorAll(".category-sublist a"),
+        );
+
+        const items = anchors.map((a) => {
+          const title = (a.textContent || "").trim();
+          const url = (a.getAttribute("href") || "").trim() || "#";
+          const isClickable = url !== "#" && !url.startsWith("#");
+
+          // 🔑 Zoek de context (subcategorie + hoofdcategorie)
+          const subcategory =
+            a.closest(".category-group")?.querySelector("h4")?.textContent ||
+            "";
+
+          const maincategory =
+            a.closest(".category-card")?.querySelector("h3")?.textContent || "";
+
+          return {
+            title,
+            url,
+            isClickable,
+            keywords: [title, subcategory, maincategory].join(" "),
+          };
+        });
+
+        // Dedup
+        const seen = new Set();
+        return items.filter((it) => {
+          const key = it.title + "__" + it.url;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      }
+      // Combineer autoIndex + pageIndex (pageIndex kan keywords toevoegen)
+  function buildSearchIndex(autoIndex, manualIndex) {
+    const map = new Map();
+
+    function cleanResultTitle(title) {
+      return (title || "")
+        .replace(/^[^:]+ functie:\s*/i, "")
+        .replace(/^[^:]+ type:\s*/i, "")
+        .trim();
+    }
+
+    function indexKey(item) {
+      const title = (item.title || "").trim();
+      const url = (item.url || "").trim() || "#";
+      const isClickable = url !== "#" && !url.startsWith("#");
+      return isClickable ? "url__" + url : "title__" + norm(title) + "__" + url;
+    }
+
+    [...autoIndex, ...manualIndex].forEach((it) => {
+      const title = (it.title || "").trim();
+      const url = (it.url || "").trim() || "#";
+      const key = indexKey(it);
+
+      const isClickable = url !== "#" && !url.startsWith("#");
+
+      const existing = map.get(key);
+      const displayTitle = cleanResultTitle(title) || title;
+
+      if (!existing) {
+        map.set(key, {
+          title: displayTitle,
+          url,
+          isClickable,
+          aliases: [displayTitle],
+          keywords: (it.keywords || title || "").trim(),
+        });
+        return;
+      }
+
+      const aliases = existing.aliases || [existing.title];
+      if (displayTitle && !aliases.includes(displayTitle)) {
+        aliases.push(displayTitle);
+      }
+
+      map.set(key, {
+        title: existing.title || displayTitle,
+        url: isClickable ? url : existing.url,
+        isClickable: existing.isClickable || isClickable,
+        aliases,
+        keywords: (
+          (existing.keywords || "") +
+          " " +
+          (it.keywords || "") +
+          " " +
+          title
+        ).trim(),
+      });
+    });
+
+    return Array.from(map.values());      }
+
+      const autoIndex = buildAutoIndex();
+      const searchIndex = buildSearchIndex(autoIndex, pageIndex);
+      const categoryOrder = [
+        "Wegdeel",
+        "Ondersteunend wegdeel",
+        "Spoor",
+        "Onbegroeid terreindeel",
+        "Begroeid terreindeel",
+        "Waterdeel",
+        "Ondersteunend waterdeel",
+        "Pand",
+        "Overig bouwwerk",
+        "Overbruggingsdeel",
+        "Tunneldeel",
+        "Kunstwerkdeel",
+        "Scheiding",
+        "Functioneel gebied",
+        "Gebouw-installatie",
+        "Inrichtingselement",
+        "Bak",
+        "Bord",
+        "Installatie",
+        "Kast",
+        "Mast",
+        "Paal",
+        "Put",
+        "Sensor",
+        "Straatmeubilair",
+        "Waterinrichtingselement",
+        "Weginrichtingselement",
+        "Vegetatie-object",
+        "Openbare ruimtelabel",
+        "Registratief gebied",
+        "Buurt",
+        "Openbare ruimte",
+      ];
+      const categoryOrderMap = new Map(
+        categoryOrder.map((name, index) => [name, index]),
+      );
+
+      function applyFilters() {
+        const query = norm((searchBox.value || "").trim());
+
+        function getResultTitle(page, terms) {
+          const aliases = page.aliases || [page.title];
+          const directMatch = aliases.find((alias) => {
+            const hay = norm(alias);
+            return terms.every((term) => hay.includes(term));
+          });
+          return directMatch || page.title;
+        }
+
+        // 1) Chips filteren
+        linkItems.forEach((li) => {
+          const text = norm(li.textContent);
+          li.style.display = !query || text.includes(query) ? "" : "none";
+        });
+
+        // 2) Zoekresultaten bovenin
+        if (!resultsContainer) return;
+        resultsContainer.innerHTML = "";
+        if (!query) return;
+
+        const terms = query.split(" ").filter(Boolean);
+
+        const matches = searchIndex
+          .filter((page) => {
+            const hay = norm(
+              (page.title || "") +
+                " " +
+                (page.keywords || "") +
+                " " +
+                (page.url || ""),
+            );
+            return terms.every((t) => hay.includes(t));
+          })
+          .slice(0, 40);
+
+        if (matches.length === 0) return;
+
+        let html = "<h3>Gevonden objecten / pagina\u2019s</h3>";
+
+        matches.forEach((page) => {
+          const resultTitle = getResultTitle(page, terms);
+
+          if (page.isClickable) {
+            html +=
+              '<div class="search-result-item"><a href="' +
+              page.url +
+              '">' +
+              resultTitle +
+              "</a></div>";
+          } else {
+            html +=
+              '<div class="search-result-item is-disabled" title="Nog geen detailpagina beschikbaar"><span class="disabled-label">' +
+              resultTitle +
+              "</span></div>";
+          }
+        });
+
+        resultsContainer.innerHTML = html;
+      }
+
+      /* Masonry (optie A): verdeel kaarten over kolommen op basis van hoogte */
+      function buildMasonry() {
+        const grid = document.getElementById("masonryGrid");
+        if (!grid) return;
+
+        const cols = Array.from(grid.querySelectorAll(".masonry-col"));
+        const cards = Array.from(grid.querySelectorAll(".category-card")).sort(
+          (a, b) => {
+            const aTitle = (a.querySelector("h3")?.textContent || "").trim();
+            const bTitle = (b.querySelector("h3")?.textContent || "").trim();
+            const aRank = categoryOrderMap.has(aTitle)
+              ? categoryOrderMap.get(aTitle)
+              : Number.MAX_SAFE_INTEGER;
+            const bRank = categoryOrderMap.has(bTitle)
+              ? categoryOrderMap.get(bTitle)
+              : Number.MAX_SAFE_INTEGER;
+            return aRank - bRank;
+          },
+        );
+
+        // kaarten tijdelijk terug naar grid (na de kolommen) zodat herverdelen stabiel is
+        cards.forEach((card) => grid.appendChild(card));
+        cols.forEach((col) => (col.innerHTML = ""));
+
+        const w = window.innerWidth;
+        const activeCols = w <= 640 ? 1 : w <= 1100 ? 2 : 3;
+        const useCols = cols.slice(0, activeCols);
+
+        // verdeel in vaste Geonovum-volgorde, ook bij meerdere kolommen
+        cards.forEach((card, index) => {
+          useCols[index % activeCols].appendChild(card);
+        });
+      }
+
+      function debounce(fn, ms) {
+        let t;
+        return function () {
+          clearTimeout(t);
+          t = setTimeout(() => fn(), ms);
+        };
+      }
+
+      searchBox.addEventListener("input", () => {
+        applyFilters();
+        // bij filteren verandert hoogte -> masonry opnieuw bouwen
+        buildMasonry();
+      });
+
+      window.addEventListener("load", () => {
+        applyFilters();
+        buildMasonry();
+      });
+
+      window.addEventListener("resize", debounce(buildMasonry, 150));
+    </script>
+    <script src="site.js"></script>
+  </body>
+</html>
