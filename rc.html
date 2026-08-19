@@ -336,24 +336,9 @@
         </section>
 
         <!-- Ruimtelijke component tijdelijk verborgen; code blijft behouden -->
-        <section class="card" id="geocomponent-section" style="display: none;">
+        <section class="card" id="geocomponent-section">
           <h2>Ruimtelijke component bekijken</h2>
-          <div
-            id="geocomponent"
-            data-kaart-viewer-url="https://geo.ecgeo.nl"
-            data-bookmark-name="geocomponent_leudal"
-            data-bookmark-group-name="Kroonringen"
-            data-cluster-zoom="16"
-            data-show-combi="0"
-            data-split-left="3"
-            data-split-right="9"
-            data-hide-search="0"
-            data-zoom-to-filter-result="1"
-            data-map-first="1"
-            data-dependent-filter="0"
-            data-update-url-params="0"
-          ></div>
-        </section>
+<div id="geocomponent" data-kaart-viewer-url="https://geo.ecgeo.nl" data-bookmark-name="geocomponent_leudal" data-bookmark-group-name="Ruimtelijke Component" data-cluster-zoom="0" data-show-combi="0" data-split-left="0" data-split-right="12" data-hide-search="0" data-zoom-to-filter-result="1" data-map-first="1" data-dependent-filter="0" data-update-url-params="0"></div>        </section>
 
         <section class="card">
           <h2>Waarom gebruiken we de ruimtelijke component?</h2>
@@ -434,21 +419,40 @@
     <script>
       (() => {
         /*
-         * Vul hier later de vier definitieve bookmarknamen in.
-         * De kaartsectie blijft verborgen zolang hierboven display: none staat.
+         * Instellingen per gemeente:
+         * - zoomToFilterResult: 0 = gemeente-omvang, 1 = filterresultaat.
+         * - zoomOutSteps: aantal extra uitzoomstappen na het laden.
          */
-        const municipalityBookmarks = {
-          leudal: "geocomponent_leudal",
-          nederweert: "VUL_HIER_BOOKMARK_NEDERWEERT_IN",
-          roermond: "VUL_HIER_BOOKMARK_ROERMOND_IN",
-          weert: "VUL_HIER_BOOKMARK_WEERT_IN"
+        const municipalitySettings = {
+          leudal: {
+            bookmarkName: "geocomponent_leudal",
+            zoomToFilterResult: "2",
+            zoomOutSteps: 0
+          },
+          nederweert: {
+            bookmarkName: "geocomponent_Nederweert",
+            zoomToFilterResult: "1",
+            zoomOutSteps: 0
+          },
+          roermond: {
+            bookmarkName: "geocomponent_roermond",
+            zoomToFilterResult: "0",
+            zoomOutSteps: 1
+          },
+          weert: {
+            bookmarkName: "geocomponent_weert",
+            zoomToFilterResult: "1",
+            zoomOutSteps: 0
+          }
         };
+
+        window.rcMunicipalitySettings = municipalitySettings;
 
         const defaultMunicipality = "leudal";
         const url = new URL(window.location.href);
         const requestedMunicipality = url.searchParams.get("gemeente");
         const selectedMunicipality = Object.hasOwn(
-          municipalityBookmarks,
+          municipalitySettings,
           requestedMunicipality
         )
           ? requestedMunicipality
@@ -459,8 +463,11 @@
           ".municipality-option"
         );
 
-        geocomponent.dataset.bookmarkName =
-          municipalityBookmarks[selectedMunicipality];
+        const selectedSettings = municipalitySettings[selectedMunicipality];
+
+        geocomponent.dataset.bookmarkName = selectedSettings.bookmarkName;
+        geocomponent.dataset.zoomToFilterResult =
+          selectedSettings.zoomToFilterResult;
 
         municipalityOptions.forEach((option) => {
           const isSelected =
@@ -480,5 +487,41 @@
       })();
     </script>
     <script src="https://geo.ecgeo.nl/geocomponent/js/geocomponent.js"></script>
+    <script>
+      (() => {
+        const requestedMunicipality = new URL(
+          window.location.href
+        ).searchParams.get("gemeente");
+        const selectedMunicipality = requestedMunicipality || "leudal";
+        const selectedSettings =
+          window.rcMunicipalitySettings[selectedMunicipality] ||
+          window.rcMunicipalitySettings.leudal;
+        const zoomOutSteps = selectedSettings.zoomOutSteps;
+
+        if (zoomOutSteps === 0) return;
+
+        let attempts = 0;
+        const waitForMap = window.setInterval(() => {
+          const zoomOutButton = document.querySelector(
+            "#geocomponent button.mdi-magnify-minus"
+          );
+
+          attempts += 1;
+
+          if (zoomOutButton) {
+            window.clearInterval(waitForMap);
+
+            /* Geef de geocomponent tijd om de beginuitsnede toe te passen. */
+            window.setTimeout(() => {
+              for (let step = 0; step < zoomOutSteps; step += 1) {
+                zoomOutButton.click();
+              }
+            }, 1000);
+          } else if (attempts >= 100) {
+            window.clearInterval(waitForMap);
+          }
+        }, 100);
+      })();
+    </script>
 </body>
 </html>
