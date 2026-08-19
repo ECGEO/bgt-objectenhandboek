@@ -19,6 +19,12 @@
         --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.08);
         --radius: 8px;
         --radius-large: 10px;
+
+        /* Tijdelijke kleuren voor de legenda; vervang later alleen deze hexcodes. */
+        --legend-pakket-1a: #2e86de;
+        --legend-pakket-1b: #27ae60;
+        --legend-pakket-2: #f39c12;
+        --legend-pakket-3: #8e44ad;
       }
 
       * {
@@ -249,6 +255,65 @@
         outline: 3px solid rgba(0, 102, 170, 0.3);
         outline-offset: 2px;
       }
+
+      .map-legend {
+        margin-top: 1rem;
+        padding-top: 0.85rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .map-legend h3 {
+        margin: 0 0 0.65rem;
+        font-size: 1rem;
+      }
+
+      .map-legend-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.55rem 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .map-legend-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.45rem;
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+
+      .map-legend-swatch {
+        flex: 0 0 auto;
+        width: 1.75rem;
+        height: 0.8rem;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        border-radius: 2px;
+      }
+
+      .map-legend-swatch--1a {
+        background: var(--legend-pakket-1a);
+      }
+
+      .map-legend-swatch--1b {
+        background: var(--legend-pakket-1b);
+      }
+
+      .map-legend-swatch--2 {
+        background: var(--legend-pakket-2);
+      }
+
+      .map-legend-swatch--3 {
+        background: var(--legend-pakket-3);
+      }
+
+      @media (max-width: 700px) {
+        .map-legend-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
 	  
     </style>
     <link
@@ -339,7 +404,30 @@
         <!-- Ruimtelijke component tijdelijk verborgen; code blijft behouden -->
         <section class="card" id="geocomponent-section">
           <h2>Ruimtelijke component bekijken</h2>
-<div id="geocomponent" data-kaart-viewer-url="https://geo.ecgeo.nl" data-bookmark-name="geocomponent_leudal" data-bookmark-group-name="Ruimtelijke Component" data-cluster-zoom="0" data-show-combi="0" data-split-left="0" data-split-right="12" data-hide-search="0" data-zoom-to-filter-result="1" data-map-first="1" data-dependent-filter="0" data-update-url-params="0"></div>        </section>
+          <div id="geocomponent" data-kaart-viewer-url="https://geo.ecgeo.nl" data-bookmark-name="geocomponent_leudal" data-bookmark-group-name="Ruimtelijke Component" data-cluster-zoom="0" data-show-combi="0" data-split-left="0" data-split-right="12" data-hide-search="0" data-zoom-to-filter-result="1" data-map-first="1" data-dependent-filter="0" data-update-url-params="0"></div>
+
+          <div class="map-legend" aria-labelledby="map-legend-heading">
+            <h3 id="map-legend-heading">Legenda</h3>
+            <ul class="map-legend-list">
+              <li class="map-legend-item">
+                <span>Pakket 1a</span>
+                <span class="map-legend-swatch map-legend-swatch--1a" aria-hidden="true"></span>
+              </li>
+              <li class="map-legend-item">
+                <span>Pakket 1b</span>
+                <span class="map-legend-swatch map-legend-swatch--1b" aria-hidden="true"></span>
+              </li>
+              <li class="map-legend-item">
+                <span>Pakket 2</span>
+                <span class="map-legend-swatch map-legend-swatch--2" aria-hidden="true"></span>
+              </li>
+              <li class="map-legend-item">
+                <span>Pakket 3</span>
+                <span class="map-legend-swatch map-legend-swatch--3" aria-hidden="true"></span>
+              </li>
+            </ul>
+          </div>
+        </section>
 
         <section class="card">
           <h2>Waarom gebruiken we de ruimtelijke component?</h2>
