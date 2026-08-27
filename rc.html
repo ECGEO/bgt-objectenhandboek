@@ -2,7 +2,7 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <title>Ruimtelijke Component – BGT Objectenhandboek (ECGeo)</title>
+    <title>BGT-inhoudsgebied – BGT Objectenhandboek (ECGeo)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" type="image/x-icon" href="ecgeo.ico" />
@@ -21,10 +21,10 @@
         --radius-large: 10px;
 
         /* Tijdelijke kleuren voor de legenda; vervang later alleen deze hexcodes. */
-        --legend-pakket-1a: #2e86de;
-        --legend-pakket-1b: #27ae60;
-        --legend-pakket-2: #f39c12;
-        --legend-pakket-3: #8e44ad;
+        --legend-wettelijk-1a: #2e86de;
+        --legend-wettelijk-1b: #27ae60;
+        --legend-basis: #f39c12;
+        --legend-plus: #8e44ad;
       }
 
       * {
@@ -294,19 +294,19 @@
       }
 
       .map-legend-swatch--1a {
-        background: var(--legend-pakket-1a);
+        background: var(--legend-wettelijk-1a);
       }
 
       .map-legend-swatch--1b {
-        background: var(--legend-pakket-1b);
+        background: var(--legend-wettelijk-1b);
       }
 
       .map-legend-swatch--2 {
-        background: var(--legend-pakket-2);
+        background: var(--legend-basis);
       }
 
       .map-legend-swatch--3 {
-        background: var(--legend-pakket-3);
+        background: var(--legend-plus);
       }
 	  .map-disclaimer {
 	  margin: 0.85rem 0 0;
@@ -362,7 +362,7 @@
             <li><a href="leeswijzer.html">Leeswijzer &amp; definities</a></li>
             <li><a href="kwaliteit.html">Kwaliteit</a></li>
             <li><a href="fg.html">Functionele Gebieden (FG)</a></li>
-            <li><a href="pakketten.html">BGT-pakketten</a></li>
+            <li><a href="pakketten.html">BGT-inhoudsniveaus</a></li>
             <li><a href="versie.html">Versies &amp; wijzigingen</a></li>
           </ul>
         </div>
@@ -395,43 +395,43 @@
         </div>
 
         <section class="card">
-          <h2>Ruimtelijke Component (RC)</h2>
+          <h2>BGT-inhoudsgebied</h2>
           <p class="intro">
-            De ruimtelijke component geeft aan hoe objecten zich ruimtelijk tot
+            Het BGT-inhoudsgebied geeft aan hoe objecten zich ruimtelijk tot
             elkaar verhouden. Het beschrijft de structuur van de openbare ruimte
             en maakt duidelijk welke objecten een begrenzende of structurerende
             rol hebben.
           </p>
 
           <div class="highlight-box">
-            De ruimtelijke component helpt bij het consistent indelen en
+            Het BGT-inhoudsgebied helpt bij het consistent indelen en
             interpreteren van de BGT en ondersteunt een eenduidige afbakening
             van objecten.
           </div>
         </section>
 
-        <!-- Ruimtelijke component tijdelijk verborgen; code blijft behouden -->
+        <!-- BGT-inhoudsgebied -->
         <section class="card" id="geocomponent-section">
-          <h2>Ruimtelijke component bekijken</h2>
+          <h2>BGT-inhoudsgebied bekijken</h2>
           <div id="geocomponent" data-kaart-viewer-url="https://geo.ecgeo.nl" data-bookmark-name="geocomponent_leudal" data-bookmark-group-name="Ruimtelijke Component" data-cluster-zoom="0" data-show-combi="0" data-split-left="0" data-split-right="12" data-hide-search="0" data-zoom-to-filter-result="1" data-map-first="1" data-dependent-filter="0" data-update-url-params="0"></div>
 
           <div class="map-legend" aria-labelledby="map-legend-heading">
             <h3 id="map-legend-heading">Legenda</h3>
             <ul class="map-legend-list">
               <li class="map-legend-item">
-                <span>Pakket 1a</span>
+                <span>Wettelijk (1a)</span>
                 <span class="map-legend-swatch map-legend-swatch--1a" aria-hidden="true"></span>
               </li>
               <li class="map-legend-item">
-                <span>Pakket 1b</span>
+                <span>Wettelijk (1b)</span>
                 <span class="map-legend-swatch map-legend-swatch--1b" aria-hidden="true"></span>
               </li>
               <li class="map-legend-item">
-                <span>Pakket 2</span>
+                <span>Basis</span>
                 <span class="map-legend-swatch map-legend-swatch--2" aria-hidden="true"></span>
               </li>
               <li class="map-legend-item">
-                <span>Pakket 3</span>
+                <span>Plus</span>
                 <span class="map-legend-swatch map-legend-swatch--3" aria-hidden="true"></span>
               </li>
             </ul>
@@ -442,7 +442,7 @@
         </section>
 
         <section class="card">
-          <h2>Waarom gebruiken we de ruimtelijke component?</h2>
+          <h2>Waarom gebruiken we het BGT-inhoudsgebied?</h2>
 <ul class="intro-list">
   <li>Structuur aanbrengen in de openbare ruimte</li>
   <li>Helpen bij het bepalen van grenzen tussen objecten</li>
@@ -453,7 +453,7 @@
         <section class="card">
           <h2>Relatie met BGT-objecten</h2>
           <p class="intro">
-            De ruimtelijke component staat niet los van de BGT-objecten, maar
+            Het BGT-inhoudsgebied staat niet los van de BGT-objecten, maar
             ondersteunt deze. Het geeft context aan hoe objecten zijn opgebouwd
             en hoe ze elkaar begrenzen.
           </p>
@@ -461,7 +461,7 @@
           <div class="highlight-box">
             Een object kan zowel een fysieke verschijningsvorm hebben als een
             rol binnen de ruimtelijke structuur. Die rol wordt vastgelegd met de
-            ruimtelijke component.
+            het BGT-inhoudsgebied.
           </div>
         </section>
 
@@ -469,12 +469,12 @@
           <h2>Bronhouder</h2>
           <p class="intro">
             Welke bronhouder verantwoordelijk is voor een object wordt
-            duidelijk vanuit de ruimtelijke component en de ligging van het
+            duidelijk vanuit het BGT-inhoudsgebied en de ligging van het
             object. Daarom wordt op afzonderlijke objectpagina's geen apart
             kenmerk &lsquo;Andere bronhouder&rsquo; getoond.
           </p>
           <div class="highlight-box">
-            Gebruik de ruimtelijke component om de ruimtelijke samenhang en de
+            Gebruik het BGT-inhoudsgebied om de ruimtelijke samenhang en de
             bijbehorende bronhoudersverantwoordelijkheid te beoordelen.
           </div>
         </section>
@@ -482,7 +482,7 @@
         <section class="card">
           <h2>Inrichtend en opdelend</h2>
           <p class="intro">
-            Binnen de ruimtelijke component wordt onderscheid gemaakt tussen
+            Binnen het BGT-inhoudsgebied wordt onderscheid gemaakt tussen
             twee rollen:
           </p>
 <ul class="intro-list">
@@ -499,13 +499,13 @@
         <section class="card">
           <h2>Gebruik binnen ECGeo</h2>
           <p class="intro">
-            ECGeo gebruikt de ruimtelijke component als hulpmiddel bij het maken
+            ECGeo gebruikt het BGT-inhoudsgebied als hulpmiddel bij het maken
             van consistente keuzes in de BGT. Dit helpt bij zowel inwinning als
             beheer en zorgt voor een uniforme werkwijze tussen gemeenten.
           </p>
 
           <div class="highlight-box">
-            Door de ruimtelijke component expliciet te benoemen, wordt het
+            Door het BGT-inhoudsgebied expliciet te benoemen, wordt het
             eenvoudiger om keuzes te onderbouwen en te herhalen in vergelijkbare
             situaties.
           </div>
