@@ -243,14 +243,14 @@
         <li>
           <strong>Wettelijke BGT-inhoud</strong>:
           <a href="pakketten.html?open=functioneel-gebied&amp;pakket=1" class="pill"
-            >Pakket 1</a
+            >Wettelijk</a
           >
         </li>
 
         <li>
-          <strong>Pakket 2 en 3</strong>: kering blijft onderdeel van
+          <strong>Basis en Plus</strong>: kering blijft onderdeel van
           <a href="pakketten.html?open=functioneel-gebied&amp;pakket=1" class="pill"
-            >Pakket 1</a
+            >Wettelijk</a
           >
         </li>
 
@@ -266,10 +266,10 @@
         <li>
           <strong>Optionele IMGeo-inhoud</strong>:
           <a href="pakketten.html?open=functioneel-gebied&amp;pakket=2" class="pill"
-            >Pakket 2</a
+            >Basis</a
           >,
           <a href="pakketten.html?open=functioneel-gebied&amp;pakket=3" class="pill"
-            >Pakket 3</a
+            >Plus</a
           >
         </li>
 
