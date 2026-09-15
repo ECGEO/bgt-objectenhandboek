@@ -30,6 +30,8 @@
 
     if (!sections.length || (!tabButtons.length && !sectionLinks.length)) return;
 
+    let afbakeningOpened = false;
+
     function activateSection(targetId) {
       sections.forEach((section) => {
         section.classList.toggle("active", section.id === targetId);
@@ -38,6 +40,32 @@
       tabButtons.forEach((button) => {
         button.classList.toggle("active", button.dataset.target === targetId);
       });
+
+      // Het externe Geonovum-iframe behoudt op GitHub Pages soms zijn
+      // interne scrollpositie wanneer tussen Definitie en Afbakening
+      // wordt gewisseld. Vanaf de tweede keer dat Afbakening wordt
+      // geopend, laden we het iframe daarom bewust opnieuw zodat een
+      // eventueel fragment in de URL (bijv. #haag) opnieuw wordt toegepast.
+      if (targetId === "afbakening") {
+        const afbakeningSection = document.getElementById("afbakening");
+        const iframe = afbakeningSection
+          ? afbakeningSection.querySelector("iframe")
+          : null;
+
+        if (iframe && afbakeningOpened) {
+          const src = iframe.getAttribute("src");
+
+          if (src) {
+            iframe.setAttribute("src", "about:blank");
+
+            setTimeout(() => {
+              iframe.setAttribute("src", src);
+            }, 10);
+          }
+        }
+
+        afbakeningOpened = true;
+      }
 
       cancelReading();
     }
