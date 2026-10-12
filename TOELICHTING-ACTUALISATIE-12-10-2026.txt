@@ -1,0 +1,136 @@
+TOELICHTING BIJ DE ACTUALISATIE VAN 12 OKTOBER 2026
+
+Dit is een volledige kopie van de aangeleverde website, met inhoudelijke wijzigingen
+op basis van het verslag van 8 oktober 2026 en de aanvullende aanwijzingen in de chat.
+De bestanden zijn lokaal voorbereid; er is niets online gepubliceerd.
+
+UITGANGSPUNTEN
+De vormgeving, CSS, scripts, navigatie, knoppen, kaart, legenda, pakketindeling en
+paginaopbouw blijven behouden. Aanvullingen gebruiken de bestaande koppen en alinea's.
+Landelijke aanbevelingen zijn herkenbaar als Geonovum-aanbeveling en worden niet als
+nieuwe ECGeo-afspraak of uitbreiding van de afgesproken pakketten gepresenteerd.
+
+VERWERKING PER PUNT UIT HET VERSLAG
+1. Algemene lijn: openbaar doel verduidelijkt; ECGeo-teksten beknopt gemaakt.
+2. Geonovum-adviezen: korte samenvattingen en verwijzingen bij Afbakening toegevoegd.
+   FAQ 2, 3, 4, 6, 7, 8, 9, 10 en 11 zijn gekoppeld aan bestaande objectpagina's.
+   FAQ 1 (ontbrekende classificaties) en 5 (laadpalen) horen bij de consultatie over
+   mogelijke aanvullende inhoud; geen nieuwe objecten of pakketkeuzes toegevoegd.
+3. Haag: Geonovum-advies herkenbaar toegevoegd. In de aangeleverde zip stond al
+   groenvoorziening als ondergrond; een oude afspraak met OTD zand of een vuistregel
+   voor onbekende breedte is niet aangetroffen. Bestaande geometrie/pakketkeuze behouden.
+4. Pand: lokale tekst beperkt tot overbouw/onderbouw op +1/-1, met het gehele vlak.
+5. Openbaar versus intern: onderscheid toegelicht op Over dit handboek. Geen nieuwe
+   interne werkwijze verzonnen; de genoemde haag-vuistregel ontbrak in deze bronversie.
+6. Legenda: volledig ongemoeid gelaten, conform instructie; uitvoering door collega.
+   Volgorde van de pagina eveneens behouden vanwege behoud van GUI en paginaopbouw.
+7. Basis/Plus: omschrijvingen op BGT-inhoudsgebied algemeen geformuleerd.
+8. Functionele gebieden: formulering over mutatiesignalering aangepast.
+9. Navigatie: ongemoeid gelaten conform instructie om functionaliteit/GUI te behouden.
+10. Feedback: tekst in handboek.html aangepast; bestaande TOPdesk-verwijzing behouden.
+11. Nieuwe objecten: consultatieonderwerp; niet als vastgestelde inhoud toegevoegd.
+12. Laatste objectcontroles: niet uitgevoerd als oplevercontrole; volgens nadere
+    instructie een teamaangelegenheid. De eerdere verkennende bronlezing vormt geen
+    inhoudelijke goedkeuring van Haag, Fietspad of Molgoot. Molgoot blijft ongewijzigd.
+13. Publicatie en link op ICTNML: organisatorische vervolgstappen; niet uitgevoerd.
+    Publicatiehistorie blijft ongewijzigd, omdat dit een lokale actualisatie is.
+
+NOG VOOR HET TEAM / DE CONSULTATIE
+- Laatste objectcontroles (punt 12), waaronder de gewenste Molgoot-werkwijze.
+- Behoefte aan aanvullende objecten, zoals laadpalen, via het afgesproken overleg.
+- Interne vuistregels verzamelen in interne documentatie.
+- Bezoekstatistieken en publicatie met BRIK afstemmen; link op ICTNML laten plaatsen.
+- De bestaande ECGeo-afspraken over geometrie, selectie en relatieve hoogte zijn,
+  behalve de expliciete Pand-wijziging uit het verslag, inhoudelijk behouden.
+  Eventuele spanning met landelijke voorbeelden is dus niet opnieuw vastgesteld
+  of opgelost; dat behoort tot de inhoudelijke beoordeling door het team.
+
+BRONNEN
+- Verslag_overleg_BGT_objectenhandboek_8_oktober_2026.docx
+- bgt-objectenhandboek-main.zip (aangeleverde website)
+- https://geonovum.github.io/IMGeo-objectenhandboek/veelgesteldevragen
+- https://geonovum.github.io/IMGeo-objectenhandboek/wegdeel
+Geraadpleegd op 12 oktober 2026.
+
+ONDERHOUD
+De aangeleverde README-ONDERHOUD.md verwijst naar
+tools/generate-missing-object-pages.mjs. Deze generator ontbreekt in de zip.
+Daarom zijn de meegeleverde volledige HTML-pagina's aangepast. Neem deze wijzigingen
+ook over in de generator wanneer die later weer wordt gebruikt, om overschrijven
+van de bijgewerkte inhoud te voorkomen.
+
+GEWIJZIGDE BESTANDEN
+
+begroeid_terreindeel.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+bgt_inhoudsgebied.html
+- Omschrijving Basis algemener geformuleerd.
+- Omschrijving Plus algemener geformuleerd.
+
+brug.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+dek.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+erf.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+
+fg.html
+- Doel mutatiesignalering verduidelijkt.
+
+fietspad.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+haag.html
+- Algemene registratietekst vervangen door herkenbaar Geonovum-advies.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+handboek.html
+- Doel openbaar handboek en onderscheid tussen regels, adviezen en lokale afspraken verduidelijkt.
+- Feedbacktekst gericht op fouten, onduidelijkheden en verbetering van het handboek.
+
+huisnummerlabel.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+onbegroeid_terreindeel.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+overkapping.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+pand.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+portaal.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+rijbaan_lokale_weg.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+toegangstrap.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+verkeersregelinstallatiepaal.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+voetpad.html
+- ECGeo-afspraak ingekort; landelijke uitleg uit dit onderdeel verwijderd.
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+watervlakte.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+zonnepaneel.html
+- Geonovum-aanbeveling of verwijzing toegevoegd bij Afbakening.
+
+AANVULLING OP VERZOEK
+De links naar de veelgestelde vragen van Geonovum zijn uit 16 pagina's verwijderd, inclusief losse Zie-ook-verwijzingen. De inhoudelijke adviesteksten en overige landelijke bronverwijzingen blijven behouden.
+
+AANVULLING PAGINAVOLGORDE
+Op verzoek is BGT-inhoudsniveaus direct onder de kaartsectie BGT-inhoudsgebied bekijken geplaatst, boven Waarom gebruiken we het BGT-inhoudsgebied?. De inhoud, opmaak, kaart en legenda zijn behouden.
