@@ -313,7 +313,7 @@
         <li><a href="kwaliteit.html">Kwaliteit</a></li>
         <li><a href="bgt_inhoudsgebied.html">BGT-inhoudsgebied (RC)</a></li>
         <li><a href="fg.html">Functionele Gebieden (FG)</a></li>
-        <li><a href="pakketten.html">BGT-pakketten</a></li>
+        <li><a href="pakketten.html">BGT-inhoudsniveaus</a></li>
         <li><a href="versie.html">Versies &amp; wijzigingen</a></li>
       </ul>
     </div>

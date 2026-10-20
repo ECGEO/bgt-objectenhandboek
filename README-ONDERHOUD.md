@@ -17,7 +17,7 @@ In dit bestand staan per pagina onder andere:
 - titel, bestandsnaam, objectklasse en geometrie;
 - definitie, classificatie en geometrie;
 - de Geonovum-URL, het fragment en de gemeten iframe-hoogte;
-- de koppeling naar het juiste BGT-pakket.
+- de koppeling naar het juiste BGT-inhoudsniveau.
 
 Voer vanuit deze map uit:
 
